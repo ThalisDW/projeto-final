@@ -36,7 +36,13 @@ export default function AccordionRecados() {
         >
           <Box sx={style}>
             <Grid container spacing={3}>
-              <Grid item xs={12} mb={3} display={"flex"} justifyContent={"center"}>
+              <Grid
+                item
+                xs={12}
+                mb={3}
+                display={"flex"}
+                justifyContent={"center"}
+              >
                 <img
                   src='./img/imgModalEditar.png'
                   alt='editar'
@@ -70,7 +76,9 @@ export default function AccordionRecados() {
                   />
                 </Grid>
                 <Grid item xs={12} display={"flex"} justifyContent={"center"}>
-                  <Button variant="contained" color="success">Salvar</Button>
+                  <Button variant='contained' color='success'>
+                    Save
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
