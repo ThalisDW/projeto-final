@@ -1,7 +1,6 @@
 import Button from "@mui/material/Button";
 import { Grid, Paper, styled, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { borderRadius } from "@mui/system";
 interface Mode {
   modo: "login" | "criar";
 }
