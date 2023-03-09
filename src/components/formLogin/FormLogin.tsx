@@ -1,6 +1,9 @@
 import Button from "@mui/material/Button";
 import { Grid, Paper, styled, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { useDispatch} from "react-redux";
+import React,{useState} from "react";
+
 interface Mode {
   modo: "login" | "criar";
 }
@@ -11,6 +14,12 @@ function FormLogin() {
     padding: "6px",
     backgroundColor: "pink",
   }));
+
+  const [name, setName] = useState('')
+  const [senha, setSenha]= React.useState('')
+
+
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -65,6 +74,9 @@ function FormLogin() {
                   id='nome'
                   label='Nome'
                   placeholder='Nome'
+                  value={name}
+                  onChange={(e)=>setName(e.target.value)}
+
                 />
               </Grid>
 
