@@ -3,10 +3,7 @@ import { Grid, Paper, styled, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useDispatch} from "react-redux";
 import React,{useState} from "react";
-
-interface Mode {
-  modo: "login" | "criar";
-}
+import { loginUser, logOn } from "../../store/modules/userSlice";
 
 function FormLogin() {
   const Item = styled(Paper)(() => ({
@@ -16,11 +13,13 @@ function FormLogin() {
   }));
 
   const [name, setName] = useState('')
-  const [senha, setSenha]= React.useState('')
+  const [senha, setSenha]= useState('')
 
 
   const dispatch = useDispatch()
-
+  const sendLog=(user:string, id:string)=>{
+      dispatch(loginUser(name))
+  }
   return (
     <>
       <Grid
@@ -71,9 +70,9 @@ function FormLogin() {
               >
                 <TextField
                   type={"text"}
-                  id='nome'
-                  label='Nome'
+                  color='secondary'
                   placeholder='Nome'
+                  label='Nome'
                   value={name}
                   onChange={(e)=>setName(e.target.value)}
 
@@ -92,6 +91,8 @@ function FormLogin() {
                   id='senha'
                   label='Senha'
                   placeholder='Senha'
+                  value={senha}
+                  onChange={(e)=>setSenha(e.target.value)}
                 />
               </Grid>
 

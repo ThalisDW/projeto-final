@@ -20,8 +20,14 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Button, Grid, TextField } from "@mui/material";
 import AccordionRecados from "../accordionRecados/AccordionRecados";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logOn } from "../../store/modules/userSlice";
+import { store } from "../../store/store";
 
 const drawerWidth = 240;
+
+
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -93,9 +99,13 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function HomeScreen() {
+  const dispatch=useDispatch()
+  const storeDb = store.getState()
+  
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const [description, setDescription]= useState('')
+  const [title, setTitle]= useState('')
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -237,7 +247,8 @@ export default function HomeScreen() {
                 type={"text"}
                 placeholder='Digite o título'
                 label='Título'
-                value={null}
+                value={title}
+                onChange={(e)=>setTitle(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} md={5}>
