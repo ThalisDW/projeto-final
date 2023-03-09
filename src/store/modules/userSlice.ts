@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import  IErrands  from "../../types/iErrands";
 import IUser from "../../types/iUser";
 
 const users: IUser[] = [
@@ -8,8 +7,6 @@ const users: IUser[] = [
   id: 'idExemple',
 }
 ];
-
-
 
 export const userSlice = createSlice({
   name: "user",
