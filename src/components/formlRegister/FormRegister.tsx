@@ -1,39 +1,73 @@
 import Button from "@mui/material/Button";
 import { Grid, Paper, styled, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import {useState} from "react";
 import { borderRadius } from "@mui/system";
+import { useDispatch } from "react-redux";
+import { addUsers } from "../../store/modules/userSlice";
+import { useNavigate, useNavigation } from "react-router-dom";
 interface Mode {
   modo: "login" | "criar";
 }
 
-function FormRegister() {
-  const Item = styled(Paper)(() => ({
-    borderRadius: "20px",
-    padding: "6px",
-    backgroundColor: "pink",
-  }));
+interface CustomPaperProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+function CustomPaper(props: CustomPaperProps) {
+  const { title, children } = props;
 
   return (
-    <>
+    <Paper
+      style={{ borderRadius: "20px", padding: "6px", backgroundColor: "pink" }}
+    >
+      <Typography variant='h2' align='center'>
+        {title}
+      </Typography>
+      {children}
+    </Paper>
+  );
+}
+
+function FormRegister() {
+  const [name, setName] = useState("");
+  const [confirmName, setConfirmName]= useState('')
+  const [senha, setSenha] = useState("");
+  const [confirmSenha, setConfirmSenha]=useState('')
+ const dispatch = useDispatch()
+
+  const createUser=()=>{
+    dispatch(addUsers({
+      name: name,
+      senha: senha,
+      id: 'idTeste555',
+      logado: false
+    }))
+    
+    
+  }
+  return (
+    <Grid
+      container
+      height={"100vh"}
+      width={"100vw"}
+      display={"flex"}
+      justifyContent={"center"}
+      alignContent={"center"}
+    >
       <Grid
         container
-        height={"100vh"}
-        width={"100vw"}
+        item
+        spacing={2}
+        xs={8}
+        md={6}
         display={"flex"}
         justifyContent={"center"}
         alignContent={"center"}
       >
-        <Grid
-          container
-          item
-          spacing={2}
-          xs={8}
-          md={6}
-          display={"flex"}
-          justifyContent={"center"}
-          alignContent={"center"}
-        >
-          <Item elevation={15}>
+        <Grid item xs={12}>
+          <CustomPaper title='Register'>
             <Grid
               container
               item
@@ -45,17 +79,6 @@ function FormRegister() {
             >
               <Grid
                 item
-                xs={10}
-                display={"flex"}
-                justifyContent={"center"}
-                alignContent={"center"}
-              >
-                <Typography align='center' variant='h2'>
-                  Register
-                </Typography>
-              </Grid>
-              <Grid
-                item
                 xs={12}
                 display={"flex"}
                 justifyContent={"center"}
@@ -65,7 +88,9 @@ function FormRegister() {
                   type={"text"}
                   id='nome'
                   label='Nome'
-                  placeholder='Nome'
+                  placeholder='Nombre'
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -80,6 +105,8 @@ function FormRegister() {
                   id='confirmarNome'
                   label='Confirmar nome'
                   placeholder='Confirmar nome'
+                  value={confirmName}
+                  onChange={(e)=>setConfirmName(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -94,6 +121,9 @@ function FormRegister() {
                   id='senha'
                   label='Senha'
                   placeholder='Senha'
+                  value={senha}
+                  onChange={(e)=>setSenha(e.target.value)}
+
                 />
               </Grid>
               <Grid
@@ -108,6 +138,8 @@ function FormRegister() {
                   id='confirmarSenha'
                   label='Confirmar senha'
                   placeholder='Confirmar senha'
+                  value={confirmSenha}
+                  onChange={(e)=>setConfirmSenha(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -117,8 +149,8 @@ function FormRegister() {
                 justifyContent={"center"}
                 alignContent={"center"}
               >
-                <Button variant='contained' color='secondary'>
-                  Entrar
+                <Button variant='contained' color='secondary' onClick={createUser}>
+                  Registrar
                 </Button>
               </Grid>
               <Grid
@@ -129,15 +161,14 @@ function FormRegister() {
                 alignContent={"center"}
               >
                 <Typography>
-                  Já possui conta?
-                  <a href='/login'>Clique aqui</a>
+                  Já possui conta? <a href='/login'>Clique aqui</a>
                 </Typography>
               </Grid>
             </Grid>
-          </Item>
+          </CustomPaper>
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 }
 
