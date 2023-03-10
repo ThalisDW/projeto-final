@@ -6,7 +6,13 @@ const users: IUser[] = [
   {name: 'Thalis',
   senha: '123456',
   id: 'idExemple',
-  logado: true
+  logado: false
+},
+{
+  name: 'Yasmin',
+  senha: '123456',
+  id: 'idYasmin',
+  logado: false
 }
 ];
 

@@ -24,6 +24,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logOn } from "../../store/modules/userSlice";
 import { store } from "../../store/store";
+import { addRecados } from "../../store/modules/userErrands";
 
 const drawerWidth = 240;
 
@@ -102,6 +103,24 @@ export default function HomeScreen() {
   const dispatch=useDispatch()
   const storeDb = store.getState()
   
+  const newErrand=()=>{
+   const idUser =storeDb.userReducer.userSlice.users.filter((item)=>{
+    if (item.id === 'idYasmin') {
+      return item.id
+    }
+  }).map((item)=>item.id)
+  
+  console.log(idUser);
+  
+    dispatch(addRecados({
+      title: title,
+      description: description,
+      id: 'testeee',
+      idUser: idUser.toString()
+    }))
+  }
+
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [description, setDescription]= useState('')
@@ -270,7 +289,7 @@ export default function HomeScreen() {
               justifyContent={"flex-start"}
               alignItems={"center"}
             >
-              <Button type='button' variant='contained' color='success'>
+              <Button type='button' variant='contained' color='success' onClick={newErrand}>
                 Salvar
               </Button>
             </Grid>

@@ -18,7 +18,7 @@ const recados: IErrands[]=[
     reducers:{
         addRecados(state, action: PayloadAction<IErrands>){
             const newRecado= action.payload
-            recados.push(newRecado)
+            state.recados.push(newRecado)
           }
     }
   })
