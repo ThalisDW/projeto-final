@@ -248,7 +248,7 @@ export default function HomeScreen() {
                 placeholder='Digite o título'
                 label='Título'
                 value={title}
-                onChange={(e)=>setTitle(e.target.value)}
+                onChange={e=>setTitle(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} md={5}>
@@ -258,7 +258,8 @@ export default function HomeScreen() {
                 type={"text"}
                 placeholder='Digite a descrição'
                 label='Descrição'
-                value={null}
+                value={description}
+                onChange={(e)=>{setDescription(()=>e.target.value)}}
               />
             </Grid>
             <Grid

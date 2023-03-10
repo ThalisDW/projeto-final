@@ -22,7 +22,7 @@ export const userSlice = createSlice({
     removeUser(state, action: PayloadAction<string>){
     state.users.filter((item)=> item.id !== action.payload)
     },
-    loginUser(state, action:PayloadAction<string>){
+    loginUser(state, action:PayloadAction<any>){
       if(state.users.find((item)=>item.name === action.payload)){
         state.users.map((item)=>{ 
           if(item.name === action.payload){

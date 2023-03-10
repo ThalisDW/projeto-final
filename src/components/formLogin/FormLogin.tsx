@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { Grid, Paper, styled, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useDispatch} from "react-redux";
-import React,{useState} from "react";
+import {useState} from "react";
 import { loginUser, logOn } from "../../store/modules/userSlice";
 
 function FormLogin() {
@@ -73,9 +73,9 @@ function FormLogin() {
                   color='secondary'
                   placeholder='Nome'
                   label='Nome'
-                  value={name}
-                  onChange={(e)=>setName(e.target.value)}
-
+                  value={!name?'':name}
+                  onChange={e=> setName(e.target.value)}
+                  
                 />
               </Grid>
 
@@ -92,7 +92,7 @@ function FormLogin() {
                   label='Senha'
                   placeholder='Senha'
                   value={senha}
-                  onChange={(e)=>setSenha(e.target.value)}
+                  onChange={e=>setSenha(()=>e.target.value)}
                 />
               </Grid>
 
